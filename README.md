@@ -56,9 +56,17 @@ int Controller::convertZebToPointCloud(QString trackNumber, QProgressBar *pb, in
 ## Further usage of the point cloud
 The resulting CSV-file contains a header line. The definition of the different columns are described in the following table:
 
-The result file can be imported by e.g. Cloud Compare or QGI. In a GIS, the information about the height can be used for colouring the points:
+The result file can be imported by e.g. Cloud Compare or QGI. In a GIS, the information about the height can be used for colouring the points (red = high height-values, blue = low height-values):
+<p align="center">
+<img src="screenshots/Result-Data1.png">
+<img src="screenshots/Result-Data2.png">
+</p>
 
-To get a regionalisation of the point data, Voronoi-polygons can be used. Because of the equidistance between the points in and crossing driving direction, the Voronoi-polygons are rectangles:
+To get a regionalisation of the point data, Voronoi-polygons can be used. Because of the equidistance between the points in and crossing driving direction, the Voronoi-polygons are rectangles (red = high height-values, blue = low height-values):
+<p align="center">
+<img src="screenshots/voronoi1.png">
+<img src="screenshots/voronoi2.png">
+</p>
 
 A regionalisation with (Delaunay-)triangulation or a rasterization should be possible, but is not tested.
 
