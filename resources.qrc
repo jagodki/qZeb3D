@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Translations/translation_de.ini</file>
+        <file>Translations/translation_en.ini</file>
+        <file>Translations/translation_fr.ini</file>
+        <file>Translations/translation_pl.ini</file>
+    </qresource>
+</RCC>
