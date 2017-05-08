@@ -5,7 +5,7 @@ calculating 3D-point-clouds from Georawfiles/Georohdaten of german ZEB
 This application creates a 3D-point-cloud from given Georawfiles/Georohdaten.
 The aim of this project was to create a tool, which extracts all information about the surface of roads and transform them into a file format that can be handled by GIS and 3D-software (e.g. Cloud Compare).
 At this version of the software, TP1a and TP1b are mandatory to create the point cloud. TP3 can be imported too, but is not used furthermore.
-The software connects the longitudinal profile with one laser on the cross-beam. The height of the HMP will be the base for all points in the point cloud, i.e. the HMP will be stretched to the whole width of the transverse profile. At the end the values of the HMP will be added to the values of the cross profile.
+The software connects the longitudinal profile with one laser on the cross-beam/transverse profile. The height of the HMP will be the base for all points in the point cloud, i.e. the HMP will be stretched to the whole width of the transverse profile. Each point of the HMP will be connected to one cross profile (1:n relationship) and each point on the cross profiles will be added by the corresponding HMP-value. The information about the absolute height will be ignored (this improves the comparison of difference tracks).
 The CRS of the resulting point cloud is EPSG:4326 (WGS84).
 
 ## Preliminary remark
@@ -54,7 +54,7 @@ int Controller::convertZebToPointCloud(QString trackNumber, QProgressBar *pb, in
 ## Further usage of the point cloud
 The resulting CSV-file contains a header line. The definition of the different columns are described in the following table:
 
-The result file can be imported by e.g. Cloud Compare or QGI. In a GIS, the information about the height can be used for colouring the points (red = high height-values, blue = low height-values):
+The result file can be imported by e.g. Cloud Compare or QGIS. In a GIS, the information about the height can be used for colouring the points (red = high height-values, blue = low height-values):
 <p align="center">
 <img src="screenshots/Result-Data1.png">
 <img src="screenshots/Result-Data2.png">
