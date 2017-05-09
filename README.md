@@ -7,6 +7,13 @@ The aim of this project was to create a tool, which extracts all information abo
 At this version of the software, TP1a and TP1b are mandatory to create the point cloud. TP3 can be imported too, but is not used furthermore.
 The software connects the longitudinal profile with one laser on the cross-beam/transverse profile. The height of the HMP will be the base for all points in the point cloud, i.e. the HMP will be stretched to the whole width of the transverse profile. Each point of the HMP will be connected to one cross profile (1:n relationship) and each point on the cross profiles will be added by the corresponding HMP-value. The information about the absolute height will be ignored (this improves the comparison of difference tracks).
 The CRS of the resulting point cloud is EPSG:4326 (WGS84).
+<table>
+<tr>
+<td><img src="screenshots/process1.jpg"></td>
+<td><img src="screenshots/process2.jpg"></td>
+<td><img src="screenshots/process3.jpg"></td>
+</tr>
+</table>
 
 ## Preliminary remark
 This project uses the Qt-framework **5.7**. It is not tested against other Qt-versions.
