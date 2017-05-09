@@ -53,12 +53,12 @@ int Controller::convertZebToPointCloud(QString trackNumber, QProgressBar *pb, in
 
 ## Further usage of the point cloud
 The resulting CSV-file contains a header line. The definition of the different columns are the following:
-x ... longitude of the current point
-y ... latitude of the current point
-z ... height as the sum of HMP and cross profile of the current point
-indexCrossProfile ... the number of the cross profile, which corresponds to the current point
-indexHmp ... the number of the HMP-value, which corresponds to the current point
-indexCrossSensor ... the index of the sensor on the cross beam, which corresponds to the current point
+1. x ... longitude of the current point
+2. y ... latitude of the current point
+3. z ... height as the sum of HMP and cross profile of the current point
+4. indexCrossProfile ... the number of the cross profile, which corresponds to the current point
+5. indexHmp ... the number of the HMP-value, which corresponds to the current point
+6. indexCrossSensor ... the index of the sensor on the cross beam, which corresponds to the current point
 
 The result file can be imported by e.g. Cloud Compare or QGIS. In a GIS, the information about the height can be used for colouring the points (red = high height-values, blue = low height-values):
 <p align="center">
