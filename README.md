@@ -16,7 +16,7 @@ A first internationalisation of the GUI is realised for the following languages:
 ## Usage
 Just download the project and open the PRO-file with Qt-Creator.
 
-### run the project
+### Run the project
 If you run the project, maybe you get a warning message that the settings-file cannot be found. The software searches in a directory beneath the executable for this file. The settings-file is not a ressource-file, i.e. Qt will not copy the file during the build-job of the application. If you run the app from IDE (e.g. QtCreator), than comment and uncomment the following lines in *Utilities/settings.cpp* to load the settings correctly:
 ```c++
 //store pah to settings file with QT-separators
@@ -52,7 +52,13 @@ int Controller::convertZebToPointCloud(QString trackNumber, QProgressBar *pb, in
 ```
 
 ## Further usage of the point cloud
-The resulting CSV-file contains a header line. The definition of the different columns are described in the following table:
+The resulting CSV-file contains a header line. The definition of the different columns are the following:
+x ... longitude of the current point
+y ... latitude of the current point
+z ... height as the sum of HMP and cross profile of the current point
+indexCrossProfile ... the number of the cross profile, which corresponds to the current point
+indexHmp ... the number of the HMP-value, which corresponds to the current point
+indexCrossSensor ... the index of the sensor on the cross beam, which corresponds to the current point
 
 The result file can be imported by e.g. Cloud Compare or QGIS. In a GIS, the information about the height can be used for colouring the points (red = high height-values, blue = low height-values):
 <p align="center">
