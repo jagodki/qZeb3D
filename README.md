@@ -83,12 +83,11 @@ A regionalisation with (Delaunay-)triangulation or a rasterization should be pos
 
 ## Known issues
 1. If the distance between two following coordinates is not exactly the same as described in the XML-files, then points at the end/beginning at one data-section (XML-node *Datenstrom*) cannot be correctly arranged (overlays or bigger/smaller gaps than normaly are possible).
-
 2. The distance between two following sensors in the cross beam is to big, i.e. I used a TP1b-file with 10cm distance between each laser on the cross beam. The resulting distance in the point cloud was ca. 15cm. I had not found the problem, maybe it is a problem with the CRS (10cm distance between two points in EPSG:4326 is just detecting by using a high precision of double values - maybe a rounding problem occured).
 3. The software was created and tested using macOS 10.12., not Windwos either Linux is tested until now.
 4. The position of crossing transversal and longitudinal profile on the cross beam is hard coded. There is no input option in the GUI.
 5. If you import a measurement with a trajectory, that can be described by the linear equation x=a, i.e. driven directly from north to south or otherwise, than it could be possible, that the points of the cross profile are on the wrong side. This problem is possible because of the mathematical model of the application, but not tested and not seen until now.
-6. Huge RAM-usage (1km track needs ca. 800MB RAM). The whole point cloud will be created in the RAM and displayed at the end of the calcualtions. It is not recommended to import more than one track into one session.
-7. No Optimisation realised for zooming and paning in the 3D-view of the software, i.e. it is not smooth if you loaded long tracks into the application.
+6. Huge RAM-usage (1km track needs ca. 800MB RAM). The whole point cloud will be created in the RAM and displayed at the end of the calculations. It is not recommended to import more than one track into one session.
+7. No optimisation realised for zooming and panning in the 3D-view of the software, i.e. it is not smooth if you loaded long tracks into the application.
 8. The calculation of distances in driving directions are realised in 2D. I think 3D-distances should be correctly because the software created a 3D-point-cloud. But the height should be ignorable for point on the road with a distance of 10cm. The usage of a 3D-distances created very unrealistic point cloud, so it is recommended to use the 2D-distance.
 9. The software is just tested with 10cm equidistance in TP1a and TP1b (distance between 2 following sensors on the cross beam). It is possible, that the software has problems with other settings of Georawfiles (but I hope it can handle them too - maybe somebody is testing it ^^).
