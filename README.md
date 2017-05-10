@@ -5,7 +5,7 @@ calculating 3D-point-clouds from Georawfiles/Georohdaten of german ZEB
 This application creates a 3D-point-cloud from given Georawfiles/Georohdaten.
 The aim of this project was to create a tool, which extracts all information about the surface of roads and transform them into a file format that can be handled by GIS and 3D-software (e.g. Cloud Compare).
 At this version of the software, TP1a and TP1b are mandatory to create the point cloud. TP3 can be imported too, but is not used furthermore.
-The software connects the longitudinal profile with one laser on the cross-beam/transverse profile. The height of the HMP will be the base for all points in the point cloud, i.e. the HMP will be stretched to the whole width of the transverse profile. Each point of the HMP will be connected to one cross profile (1:n relationship) and each point on the cross profiles will be added by the corresponding HMP-value. The information about the absolute height will be ignored (this improves the comparison of difference tracks).
+The software connects the longitudinal profile with one laser on the cross-beam/transverse profile. The height of the HMP will be the base for all points in the point cloud, i.e. the HMP will be stretched to the whole width of the transverse profile respectivly the longitudinal profile will be projected on every laser on the cross beam. Each point of the HMP will be connected to one cross profile (1:n relationship) and each point on the cross profiles will be added by the corresponding HMP-value. The information about the absolute height will be ignored (this improves the comparison of difference tracks).
 The CRS of the resulting point cloud is EPSG:4326 (WGS84).
 <table>
 <tr>
@@ -82,7 +82,7 @@ To get a regionalisation of the point data, Voronoi-polygons can be used. Becaus
 A regionalisation with (Delaunay-)triangulation or a rasterization should be possible, but is not tested.
 
 ## Known issues
-1. If the distance between two following coordinates is not exactly the same as described in the XML-files, then points at the end/beginning at one data-section (XML-node *Datenstrom*) can be not correctly arranged:
+1. If the distance between two following coordinates is not exactly the same as described in the XML-files, then points at the end/beginning at one data-section (XML-node *Datenstrom*) cannot be correctly arranged (overlays or bigger/smaller gaps than normaly are possible).
 
 2. The distance between two following sensors in the cross beam is to big, i.e. I used a TP1b-file with 10cm distance between each laser on the cross beam. The resulting distance in the point cloud was ca. 15cm. I had not found the problem, maybe it is a problem with the CRS (10cm distance between two points in EPSG:4326 is just detecting by using a high precision of double values - maybe a rounding problem occured).
 3. The software was created and tested using macOS 10.12., not Windwos either Linux is tested until now.
