@@ -34,6 +34,15 @@ this->settingsPath = QDir::toNativeSeparators(this->settingsPath);
 //this->settingsPath = "/Users/Christoph/GitHub/qzeb3d/Settings/mainsettings.ini";
 ```
 
+The GUI looks like the following:
+<p align="center">
+<img src="screenshots/screenshot_app.png">
+</p>
+
+1. First press the import-button and choose one of the three files of a ZEB-track. The software searches in the same directory and all subdirectories for the other 2 files.
+2. After importing the data and calculating the point cloud, select the track in the tree view for preparing the export.
+3. Press the export-button and type in the name of the resulting file (including the extension of the file).
+
 ### Build the application
 If you build the application, remember to remove the hard coded path to the settings-file if necessary.
 After building the application, copy the settings-file to the right directory of the application. If there is no settings-file at application-launch, a new file will be created by the software and the language of the GUI will be english.
@@ -84,7 +93,7 @@ A regionalisation with (Delaunay-)triangulation or a rasterization should be pos
 ## Known issues
 1. If the distance between two following coordinates is not exactly the same as described in the XML-files, then points at the end/beginning at one data-section (XML-node *Datenstrom*) cannot be correctly arranged (overlays or bigger/smaller gaps than normaly are possible).
 2. The distance between two following sensors in the cross beam is to big, i.e. I used a TP1b-file with 10cm distance between each laser on the cross beam. The resulting distance in the point cloud was ca. 15cm. I had not found the problem, maybe it is a problem with the CRS (10cm distance between two points in EPSG:4326 is just detecting by using a high precision of double values - maybe a rounding problem occured).
-3. The software was created and tested using macOS 10.12., not Windwos either Linux is tested until now.
+3. The software was created and tested using macOS 10.12., neither Windows nor Linux are tested until now.
 4. The position of crossing transversal and longitudinal profile on the cross beam is hard coded. There is no input option in the GUI.
 5. If you import a measurement with a trajectory, that can be described by the linear equation x=a, i.e. driven directly from north to south or otherwise, than it could be possible, that the points of the cross profile are on the wrong side. This problem is possible because of the mathematical model of the application, but not tested and not seen until now.
 6. Huge RAM-usage (1km track needs ca. 800MB RAM). The whole point cloud will be created in the RAM and displayed at the end of the calculations. It is not recommended to import more than one track into one session.
