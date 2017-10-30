@@ -60,6 +60,7 @@ public:
 
     void loadPointCloudDataArray(QString trackNumber, QScatterDataArray *dataArray);
     bool exportPointCloud(QString path, QString track, QProgressBar *pb, QTextEdit *te);
+    void displayPointCloud();
 
 private:
     QHash<QString, Track*> zebTracks;

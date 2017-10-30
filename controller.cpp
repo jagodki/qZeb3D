@@ -332,3 +332,5 @@ QString Controller::getSetting(QString key) {
 void Controller::setSetting(QString key, QString value) {
     return this->settings.setSetting(key, value);
 }
+
+

@@ -37,6 +37,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->pushButton_import->setToolTip(this->controller.getMessage("import"));
     this->ui->actionImport->setText(this->controller.getMessage("import"));
     this->ui->actionImport->setToolTip(this->controller.getMessage("import"));
+    this->ui->pushButton_importexport->setText(this->controller.getMessage("importexport"));
+    this->ui->pushButton_importexport->setToolTip(this->controller.getMessage("importexport"));
     this->ui->pushButton_export->setText(this->controller.getMessage("export"));
     this->ui->pushButton_export->setToolTip(this->controller.getMessage("export"));
     this->ui->actionExport->setText(this->controller.getMessage("export"));
@@ -53,6 +55,14 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_pushButton_import_clicked() {
+    QString filename = this->importData();
+    if(filename != "") {
+        //display the pointcloud
+        this->displayZebTrack(this->controller.getDataName(filename, "zeb"));
+    }
+}
+
+QString MainWindow::importData() {
     //open FileDialog
     QString filename = QFileDialog::getOpenFileName(
                 this,
@@ -113,13 +123,13 @@ void MainWindow::on_pushButton_import_clicked() {
 
             //create a pointcloud from the given zeb-track
             controller.convertZebToPointCloud(controller.getDataName(filename, "zeb"), ui->progressBar, 5, this->ui->textEdit);
+            return filename;
 
-            //display the pointcloud
-            this->displayZebTrack(this->controller.getDataName(filename, "zeb"));
         } else {
             this->ui->textEdit->insertPlainText(
                         QDateTime::currentDateTime().toString() +
                         " - " + this->controller.getMessage("notabletocalcualtepointcloud") + "\n");
+            return "";
         }
     }
 }
@@ -166,6 +176,10 @@ void MainWindow::initViewer() {
 }
 
 void MainWindow::on_pushButton_export_clicked() {
+    this->exportData(this->ui->treeWidget->selectedItems().at(0)->text(0));
+}
+
+void MainWindow::exportData(QString track) {
     QString filename = QFileDialog::getSaveFileName(
                 this,
                 this->controller.getMessage("exportfile"),
@@ -180,7 +194,7 @@ void MainWindow::on_pushButton_export_clicked() {
         this->controller.setSetting("exportpath", QFileInfo(filename).dir().absolutePath());
 
         //start export
-        this->controller.exportPointCloud(filename, this->ui->treeWidget->selectedItems().at(0)->text(0), this->ui->progressBar, this->ui->textEdit);
+        this->controller.exportPointCloud(filename, track, this->ui->progressBar, this->ui->textEdit);
     }
 }
 
@@ -218,4 +232,9 @@ void MainWindow::on_actionInfo_triggered() {
                          "Version: " + this->controller.getSetting("appversion") + "\n" +
                          "written by: " + this->controller.getSetting("appauthor") + "\n" +
                          "GitHub: " + this->controller.getSetting("appgithub"));
+}
+
+void MainWindow::on_pushButton_importexport_clicked() {
+    QString filename = this->importData();
+    this->exportData(this->controller.getDataName(filename, "zeb"));
 }

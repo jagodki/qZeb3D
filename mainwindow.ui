@@ -77,7 +77,14 @@
            </size>
           </property>
           <property name="text">
-           <string>+</string>
+           <string>import track</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_importexport">
+          <property name="text">
+           <string>import and export without displaying</string>
           </property>
          </widget>
         </item>

@@ -65,6 +65,8 @@ private:
     QDialog *info;
 
     void displayZebTrack(QString trackNumber);
+    QString importData();
+    void exportData(QString track);
     void initViewer();
 
 private slots:
@@ -85,6 +87,8 @@ private slots:
     void on_actionPolish_triggered();
 
     void on_actionInfo_triggered();
+
+    void on_pushButton_importexport_clicked();
 
 private:
     Ui::MainWindow *ui;
