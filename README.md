@@ -39,9 +39,11 @@ The GUI looks like the following:
 <img src="screenshots/screenshot_app.png">
 </p>
 
-1. First press the import-button and choose one of the three files of a ZEB-track. The software searches in the same directory and all subdirectories for the other 2 files.
+1. First press the import-button and choose one of the three files of a ZEB-track. The software searches in the same directory and all subdirectories for the other 2 files. The calculated point cloud will be displayed in the software.
 2. After importing the data and calculating the point cloud, select the track in the tree view for preparing the export.
 3. Press the export-button and type in the name of the resulting file (including the extension of the file).
+
+The encircled button (Import and Export) starts the import and export at one time. There is no need to select a track in the tree view. The point cloud will not be displayed in the software (huge reduction of RAM usage and calculation time).
 
 ### Build the application
 If you build the application, remember to remove the hard coded path to the settings-file if necessary.
@@ -91,12 +93,12 @@ To get a regionalisation of the point data, Voronoi-polygons can be used. Becaus
 A regionalisation with (Delaunay-)triangulation or a rasterization should be possible, but is not tested.
 
 ## Known issues
-1. If the distance between two following coordinates is not exactly the same as described in the XML-files, then points at the end/beginning at one data-section (XML-node *Datenstrom*) cannot be correctly arranged (overlays or bigger/smaller gaps than normaly are possible).
-2. The distance between two following sensors in the cross beam is to big, i.e. I used a TP1b-file with 10cm distance between each laser on the cross beam. The resulting distance in the point cloud was ca. 15cm. I had not found the problem, maybe it is a problem with the CRS (10cm distance between two points in EPSG:4326 is just detecting by using a high precision of double values - maybe a rounding problem occured).
-3. The software was created and tested using macOS 10.12., neither Windows nor Linux are tested until now.
+1. If the distance between two following coordinates is not exactly the same as described in the XML-files, then points at the end/beginning at one data-section (XML-node *Datenstrom*) cannot be correctly arranged (overlays or bigger/smaller gaps than normal are possible).
+2. The distance between two following sensors in the cross beam is too big, i.e. I used a TP1b-file with 10cm distance between each laser on the cross beam. The resulting distance in the point cloud was ca. 15cm. I had not found the problem, maybe it is a problem with the CRS (10cm distance between two points in EPSG:4326 is just representing by using a high precision of double values - maybe a rounding problem occured).
+3. The software was created and tested using macOS 10.12, neither Windows nor Linux are tested until now.
 4. The position of crossing transversal and longitudinal profile on the cross beam is hard coded. There is no input option in the GUI.
-5. If you import a measurement with a trajectory, that can be described by the linear equation x=a, i.e. driven directly from north to south or otherwise, than it could be possible, that the points of the cross profile are on the wrong side. This problem is possible because of the mathematical model of the application, but not tested and not seen until now.
-6. Huge RAM-usage (1km track needs ca. 800MB RAM). The whole point cloud will be created in the RAM and displayed at the end of the calculations. It is not recommended to import more than one track into one session.
+5. If you import a measurement with a trajectory, that can be described by the linear equation x=a, i.e. driven directly from north to south or otherwise, than it could be possible, that the points of the cross profile are on the wrong side. This problem should be theoretical possible because of the mathematical model of the application, but not tested and not seen until now.
+6. Huge RAM-usage (1km track needs ca. 800MB RAM) by using the Import-button, which displayes the point cloud after import. The whole point cloud will be created in the RAM and displayed at the end of the calculations. It is not recommended to import more than one track into one session. If you use the Import and Export-button, the same track needs only 150MB RAM.
 7. No optimisation realised for zooming and panning in the 3D-view of the software, i.e. it is not smooth if you loaded long tracks into the application.
-8. The calculation of distances in driving directions are realised in 2D. I think 3D-distances should be correctly because the software created a 3D-point-cloud. But the height should be ignorable for point on the road with a distance of 10cm. The usage of a 3D-distances created very unrealistic point cloud, so it is recommended to use the 2D-distance.
+8. The calculation of distances in driving directions are realised in 2D. I think 3D-distances should be correctly because the software created a 3D-point-cloud. But the absolute height of the road should be ignorable for points on the road with a distance of 10cm (the difference between 2 nearest points is very low). The usage of a 3D-distances creates a very unrealistic point cloud, so it is recommended to use the 2D-distance.
 9. The software is just tested with 10cm equidistance in TP1a and TP1b (distance between 2 following sensors on the cross beam). It is possible, that the software has problems with other settings of Georawfiles (but I hope it can handle them too - maybe somebody is testing it ^^).
